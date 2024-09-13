@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Password Protected PDFs</title>
+</head>
+<body>
+    <h2>Enter Password to Access Next PDF</h2>
+    <form id="passwordForm">
+        <input type="password" id="password" placeholder="Enter password" required>
+        <button type="button" onclick="checkPassword()">Submit</button>
+    </form>
+
+    <div id="pdfLink" style="display:none;">
+        <a id="nextPDF" href="#" target="_blank">Access Next PDF</a>
+    </div>
+
+    <script>
+        const passwords = ["password1", "password2", "password3", "password4", "password5", "password6", "password7", "password8", "password9", "password10"];
+        let currentPdfIndex = 0;
+
+        function checkPassword() {
+            const userInput = document.getElementById("password").value;
+            if (userInput === passwords[currentPdfIndex]) {
+                document.getElementById("nextPDF").href = `pdf${currentPdfIndex + 1}.pdf`;
+                document.getElementById("pdfLink").style.display = "block";
+                currentPdfIndex++; // Move to the next PDF
+            } else {
+                alert("Incorrect password! Try again.");
+            }
+        }
+    </script>
+</body>
+</html>
